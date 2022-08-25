@@ -1,6 +1,6 @@
-const greenPathCard = '../../MythicCards/green/';
-const bluePathCard = '../../MythicCards/blue/';
-const brownPathCard = '../../MythicCards/brown/';
+const greenPathCard = '../../assets/MythicCards/green/';
+const bluePathCard = '../../assets/MythicCards/blue/';
+const brownPathCard = '../../assets/MythicCards/brown/';
 // const difficulties = [
 //     {
 //         id: 'easy',
@@ -22,18 +22,18 @@ const ancientsData = [
         cardFace: '../../Ancients/Azathoth.png',
         firstStage: {
             greenCards: 1,
-            blueCards: 1,
             brownCards: 2,
+            blueCards: 1,
         },
         secondStage: {
             greenCards: 2,
-            blueCards: 1,
             brownCards: 3,
+            blueCards: 1,
         },
         thirdStage: {
             greenCards: 2,
-            blueCards: 0,
             brownCards: 4,
+            blueCards: 0,
         },
     },
     {
@@ -42,18 +42,18 @@ const ancientsData = [
         cardFace: '../../Ancients/Cthulthu.png',
         firstStage: {
             greenCards: 0,
-            blueCards: 2,
             brownCards: 2,
+            blueCards: 2,
         },
         secondStage: {
             greenCards: 1,
-            blueCards: 0,
             brownCards: 3,
+            blueCards: 0,
         },
         thirdStage: {
             greenCards: 3,
-            blueCards: 0,
             brownCards: 4,
+            blueCards: 0,
         },
     },
     {
@@ -62,18 +62,18 @@ const ancientsData = [
         cardFace: '../../Ancients/IogSothoth.png',
         firstStage: {
             greenCards: 0,
-            blueCards: 1,
             brownCards: 2,
+            blueCards: 1,
         },
         secondStage: {
             greenCards: 2,
-            blueCards: 1,
             brownCards: 3,
+            blueCards: 1,
         },
         thirdStage: {
             greenCards: 3,
-            blueCards: 0,
             brownCards: 4,
+            blueCards: 0,
         },
     },
     {
@@ -82,18 +82,18 @@ const ancientsData = [
         cardFace: '../../Ancients/ShubNiggurath.png',
         firstStage: {
             greenCards: 1,
-            blueCards: 1,
             brownCards: 2,
+            blueCards: 1,
         },
         secondStage: {
             greenCards: 3,
-            blueCards: 1,
             brownCards: 2,
+            blueCards: 1,
         },
         thirdStage: {
             greenCards: 2,
-            blueCards: 0,
             brownCards: 4,
+            blueCards: 0,
         },
     },
 ];
@@ -413,7 +413,7 @@ const greenCardsAssets = [
 class GameHelper {
     _currentStage = 0; // Текущая стадия игры
     _gameLevel = 0; // Уровень игры (от 0 до 4)
-    _ancientCardIndex = 0; // Для какого древнего происходит раздача (от 0 до 3)
+    _ancientCardIndex = 0; // Для какого древнего раздача (от 0 до 3)
     _stackGreenCard = []; // Полная колода для текущего уровня игры
     _stackBlueCard = [];
     _stackBrownCard = [];
@@ -454,6 +454,9 @@ class GameHelper {
         this._gameLevel = gameLevel;
         this._ancientCardIndex = ancientCardIndex;
         this.initialize();
+        this.shuffle([this._gameStackBrown, this._gameStackBlue,
+            this._gameStackGreen])
+        this.createQueue();
     }
 
     initialize() {
@@ -491,15 +494,9 @@ class GameHelper {
         let sumOfCard = this._stage[0][0] + this._stage[1][0] + this._stage[2][0];
         this.pushGameStack(this._stackGreenCard, this._gameStackGreen, sumOfCard)
         sumOfCard = this._stage[0][1] + this._stage[1][1] + this._stage[2][1];
-        this.pushGameStack(this._stackBlueCard, this._gameStackBlue, sumOfCard)
-        sumOfCard = this._stage[0][2] + this._stage[1][2] + this._stage[2][2];
         this.pushGameStack(this._stackBrownCard, this._gameStackBrown, sumOfCard)
-
-        this.shuffle([this._gameStackBrown, this._gameStackBlue,
-            this._gameStackGreen])
-
-        this.createQueue();
-
+        sumOfCard = this._stage[0][2] + this._stage[1][2] + this._stage[2][2];
+        this.pushGameStack(this._stackBlueCard, this._gameStackBlue, sumOfCard)
         // let x = 1;
         // while (x) {
         //     x = this.getRandomCard();
@@ -523,7 +520,7 @@ class GameHelper {
     getRandomCard() {
         // Получение случайной карты из теущей стадии либо увеличение
         // стадии и отдача результата
-        let test = [this._gameStackGreen, this._gameStackBlue, this._gameStackBrown]
+        let test = [this._gameStackGreen, this._gameStackBrown, this._gameStackBlue]
         if (this._randomQueue.length > 0) {
             let result = this._randomQueue.pop();
             this._stage[this._currentStage][result]--;
@@ -540,7 +537,7 @@ class GameHelper {
 
     getCurrentStageDeck() {
         // Получение списка доступных карт для текущей стадии
-        return this._stage[this._currentStage];
+        return this._stage;
     }
 
     pushGameStack(output, input, count) {
@@ -576,5 +573,70 @@ class GameHelper {
     }
 }
 
-let game = new GameHelper(4, 0);
-console.log(game._gameLevel)
+// -------------Блок обработки -----------------
+let ancientSelect = 0; // начальный древний
+let levelSelect = 0; // начальный уровень
+let ancient = new GameHelper(levelSelect, ancientSelect)
+refreshStageWindow();
+
+// ============Обновление окна стадий ============
+function refreshStageWindow() {
+    const stages = ancient.getCurrentStageDeck()
+    for (const [idxStage, numStage] of stages.entries()) {
+        for (const [color, stage] of ['green', 'brown', 'blue'].entries()) {
+            let element = document.querySelector(`.stage${idxStage + 1} .${stage}`)
+            element.textContent = numStage[color];
+        }
+    }
+}
+
+// ------------Меню уровня сложности--------------
+document.querySelector('.center-container').addEventListener('click', function (e) {
+    let tmpLevel = 0;
+    let currentLevel = document.querySelector('.center-container .select');
+    for (const [idx, btn] of document.querySelectorAll('.menu-btn').entries()) {
+        if (btn === e.target) tmpLevel = idx;
+        btn.classList.remove('select');
+    }
+    console.log(tmpLevel + ' selected');
+    e.target.classList.add('select');
+    if (tmpLevel === 5) {
+        currentLevel.classList.add('select');
+        console.log('Запуск начала раздачи');
+        ancient = new GameHelper(levelSelect, ancientSelect)
+        refreshStageWindow();
+        showCard();
+    } else {
+        levelSelect = tmpLevel;
+    }
+});
+// --------------Конец меню----------------------
+// --------------Выбор древнего------------------
+document.querySelector('.left-container').addEventListener('click', function (e) {
+    for (const[idx, ancient] of document.querySelectorAll('.left-container' +
+        ' img').entries()) {
+        ancient.classList.remove('select');
+        if (ancient === e.target) {
+            e.target.classList.add('select');
+            ancientSelect = idx;
+        }
+    }
+    console.log(ancientSelect);
+})
+// ----------------------------------------------
+// --------------Показать карту из колоды--------
+function showCard() {
+    let card = ancient.getRandomCard()
+    if (card) {
+        let elem = document.createElement('img');
+        elem.src = card.cardFace;
+        elem.height = 400;
+        elem.width = 285;
+        let place = document.querySelector('.show-cards');
+        place.textContent = '';
+        place.appendChild(elem);
+        refreshStageWindow();
+    } else {
+        console.log('Card is finished')
+    }
+}

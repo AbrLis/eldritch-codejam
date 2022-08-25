@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="./src/css/style.css">
   <title>Eldritch Helper</title>
 </head>
 <body>
-<h1>Здесь будет что-то умное</h1>
+<div class="left-container">
+  <img class="select" src="./assets/Ancients/Azathoth.png" alt="Azathoth"
+       height="574"
+       width="443">
+  <img src="./assets/Ancients/Cthulthu.png" alt="Cthulthu" height="573"
+       width="436">
+  <img src="./assets/Ancients/IogSothoth.png" alt="IogSothoth" height="573"
+       width="438">
+  <img src="assets/Ancients/ShubNiggurath.png" alt="ShubNiggurath"
+       height="571" width="441">
+</div>
+<div class="game-container">
+  <div class="center-container">
+    <span class="menu-title">Уровень сложности</span>
+    <button type="button" class="menu-btn select">Легчайший</button>
+    <button type="button" class="menu-btn">Лёгкий</button>
+    <button type="button" class="menu-btn">Средний</button>
+    <button type="button" class="menu-btn">Сложный</button>
+    <button type="button" class="menu-btn">Сложнейший</button>
+    <span class="menu-title">---</span>
+    <button type="button" class="menu-btn">Начать раздачу</button>
+  </div>
+  <div class="deck-stages">
+    <span class="stage-text">Стадия 1</span>
+    <div class="stage stage1">
+      <span class="green">0</span>
+      <span class="brown">0</span>
+      <span class="blue">0</span>
+    </div>
+    <span class="stage-text">Стадия 2</span>
+    <div class="stage stage2">
+      <span class="green">0</span>
+      <span class="brown">0</span>
+      <span class="blue">0</span>
+    </div>
+    <span class="stage-text">Стадия 3</span>
+    <div class="stage stage3">
+      <span class="green">0</span>
+      <span class="brown">0</span>
+      <span class="blue">0</span>
+    </div>
+  </div>
+  <div class="right-container">
+    <img src="./assets/mythicCardBackground.jpg" alt="Deck" height="419"
+         width="285"/>
+    <div class="show-cards"></div>
+  </div>
+</div>
+<script src="src/js/script.mjs"></script>
 </body>
 </html>

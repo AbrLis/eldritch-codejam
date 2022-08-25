@@ -1,0 +1,110 @@
+body {
+	display: flex;
+	flex-direction: column;
+	background: url("../../assets/home.jpg") no-repeat center/cover;
+	height: 100vh;
+	color: white;
+}
+
+.left-container {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 10px;
+
+	img {
+		width: 24%;
+		height: auto;
+		margin: 1px 1px;
+		opacity: .7;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		&.select {
+			opacity: 1;
+			border: 1px solid red;
+		}
+	}
+
+}
+
+.game-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.center-container {
+	display: flex;
+	width: auto;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	.menu-btn {
+		width: 150px;
+		margin: 3px;
+		user-select: none;
+
+		&.select {
+			color: red;
+			background: darkblue;
+		}
+	}
+
+}
+
+.deck-stages {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0 50px 0 50px;
+	.stage-text{
+			text-align: center;
+		}
+
+	.stage {
+		display: flex;
+		padding: 5px;
+
+		span {
+			position: relative;
+			padding-right: 5px;
+			border-radius: 50%;
+			height: 30px;
+			width: 30px;
+			text-align: center;
+			padding-top: 11px;
+			margin-right: 10px;
+
+			&.blue {
+				background-color: blue;
+			}
+
+			&.green {
+				background-color: green;
+			}
+			&.brown {
+				background-color: saddlebrown;
+			}
+		}
+	}
+}
+
+.right-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: left;
+
+	img, .show-cards img {
+		width: 285px;
+		height: auto;
+	}
+	.show-cards{
+		margin-left: 20px;
+	}
+}

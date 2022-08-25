@@ -1,0 +1,95 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background: url("../../assets/home.jpg") no-repeat center / cover;
+  height: 100vh;
+  color: white;
+}
+.left-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.left-container img {
+  width: 24%;
+  height: auto;
+  margin: 1px 1px;
+  opacity: 0.7;
+}
+.left-container img:hover {
+  opacity: 1;
+}
+.left-container img.select {
+  opacity: 1;
+  border: 1px solid red;
+}
+.game-container {
+  display: flex;
+  flex-direction: row;
+}
+.center-container {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.center-container .menu-btn {
+  width: 150px;
+  margin: 3px;
+  user-select: none;
+}
+.center-container .menu-btn.select {
+  color: red;
+  background: darkblue;
+}
+.deck-stages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 50px 0 50px;
+}
+.deck-stages .stage-text {
+  text-align: center;
+}
+.deck-stages .stage {
+  display: flex;
+  padding: 5px;
+}
+.deck-stages .stage span {
+  position: relative;
+  padding-right: 5px;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  padding-top: 11px;
+  margin-right: 10px;
+}
+.deck-stages .stage span.blue {
+  background-color: blue;
+}
+.deck-stages .stage span.green {
+  background-color: green;
+}
+.deck-stages .stage span.brown {
+  background-color: saddlebrown;
+}
+.right-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+.right-container img,
+.right-container .show-cards img {
+  width: 285px;
+  height: auto;
+}
+.right-container .show-cards {
+  margin-left: 20px;
+}
+/*# sourceMappingURL=style.css.map */
