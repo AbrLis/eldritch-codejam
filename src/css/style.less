@@ -15,18 +15,19 @@ body {
 	margin-bottom: 10px;
 
 	img {
-		width: 24%;
+		width: 23vw;
 		height: auto;
 		margin: 1px 1px;
 		opacity: .7;
 
 		&:hover {
 			opacity: 1;
+			outline: 2px dotted blue;
 		}
 
 		&.select {
 			opacity: 1;
-			border: 1px solid red;
+			outline: 1px solid red;
 		}
 	}
 
@@ -101,8 +102,12 @@ body {
 	justify-content: left;
 
 	img, .show-cards img {
-		width: 285px;
+		width: auto;
 		height: auto;
+		cursor: pointer;
+	}
+	.no-play {
+		opacity: 0.5;
 	}
 	.show-cards{
 		margin-left: 20px;

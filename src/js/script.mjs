@@ -577,6 +577,7 @@ class GameHelper {
 let ancientSelect = 0; // начальный древний
 let levelSelect = 0; // начальный уровень
 let ancient = new GameHelper(levelSelect, ancientSelect)
+let isPlay = false;
 refreshStageWindow();
 
 // ============Обновление окна стадий ============
@@ -591,38 +592,40 @@ function refreshStageWindow() {
 }
 
 // ------------Меню уровня сложности--------------
-document.querySelector('.center-container').addEventListener('click', function (e) {
-    let tmpLevel = 0;
-    let currentLevel = document.querySelector('.center-container .select');
-    for (const [idx, btn] of document.querySelectorAll('.menu-btn').entries()) {
-        if (btn === e.target) tmpLevel = idx;
-        btn.classList.remove('select');
-    }
-    console.log(tmpLevel + ' selected');
-    e.target.classList.add('select');
-    if (tmpLevel === 5) {
-        currentLevel.classList.add('select');
-        console.log('Запуск начала раздачи');
-        ancient = new GameHelper(levelSelect, ancientSelect)
-        refreshStageWindow();
-        showCard();
-    } else {
-        levelSelect = tmpLevel;
-    }
-});
+document.querySelector('.center-container').addEventListener('click',
+    function (e) {
+        let tmpLevel = 0;
+        let currentLevel = document.querySelector('.center-container .select');
+        for (const [idx, btn] of document.querySelectorAll('.menu-btn').entries()) {
+            if (btn === e.target) tmpLevel = idx;
+            btn.classList.remove('select');
+        }
+        e.target.classList.add('select');
+        if (tmpLevel === 5) {
+            currentLevel.classList.add('select');
+            console.log('Запуск начала раздачи');
+            ancient = new GameHelper(levelSelect, ancientSelect)
+            refreshStageWindow();
+            showCard();
+            isPlay = true;
+            document.querySelector('.right-container img').classList.remove('no-play');
+        } else {
+            levelSelect = tmpLevel;
+        }
+    });
 // --------------Конец меню----------------------
 // --------------Выбор древнего------------------
-document.querySelector('.left-container').addEventListener('click', function (e) {
-    for (const[idx, ancient] of document.querySelectorAll('.left-container' +
-        ' img').entries()) {
-        ancient.classList.remove('select');
-        if (ancient === e.target) {
-            e.target.classList.add('select');
-            ancientSelect = idx;
+document.querySelector('.left-container').addEventListener('click',
+    function (e) {
+        for (const [idx, ancient] of document.querySelectorAll('.left-container' +
+            ' img').entries()) {
+            ancient.classList.remove('select');
+            if (ancient === e.target) {
+                e.target.classList.add('select');
+                ancientSelect = idx;
+            }
         }
-    }
-    console.log(ancientSelect);
-})
+    })
 // ----------------------------------------------
 // --------------Показать карту из колоды--------
 function showCard() {
@@ -637,6 +640,15 @@ function showCard() {
         place.appendChild(elem);
         refreshStageWindow();
     } else {
-        console.log('Card is finished')
+        isPlay = false;
+        document.querySelector('.right-container img').classList.add('no-play');
+        console.log('Card is finished');
     }
 }
+
+// --------------Разбор колоды------------------
+document.querySelector('.right-container img').addEventListener('click',
+    function (e) {
+        if (!isPlay) return;
+        showCard();
+    })

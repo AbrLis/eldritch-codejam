@@ -14,17 +14,18 @@ body {
   margin-bottom: 10px;
 }
 .left-container img {
-  width: 24%;
+  width: 23vw;
   height: auto;
   margin: 1px 1px;
   opacity: 0.7;
 }
 .left-container img:hover {
   opacity: 1;
+  outline: 2px dotted blue;
 }
 .left-container img.select {
   opacity: 1;
-  border: 1px solid red;
+  outline: 1px solid red;
 }
 .game-container {
   display: flex;
@@ -86,8 +87,12 @@ body {
 }
 .right-container img,
 .right-container .show-cards img {
-  width: 285px;
+  width: auto;
   height: auto;
+  cursor: pointer;
+}
+.right-container .no-play {
+  opacity: 0.5;
 }
 .right-container .show-cards {
   margin-left: 20px;
