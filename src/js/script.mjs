@@ -1,6 +1,6 @@
-const greenPathCard = './../../assets/MythicCards/green/';
-const bluePathCard = './../../assets/MythicCards/blue/';
-const brownPathCard = './../../assets/MythicCards/brown/';
+const greenPathCard = './assets/MythicCards/green/';
+const bluePathCard = './assets/MythicCards/blue/';
+const brownPathCard = './assets/MythicCards/brown/';
 const ancientsData = [
     {
         id: 'azathoth',
