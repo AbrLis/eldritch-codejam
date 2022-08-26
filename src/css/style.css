@@ -1,8 +1,8 @@
 body {
   display: flex;
   flex-direction: column;
-  background: url("../../assets/home.jpg") no-repeat center / cover;
-  height: 100vh;
+  background: url("../../assets/home.jpg") no-repeat;
+  height: 95vh;
   color: white;
 }
 .left-container {
@@ -10,14 +10,14 @@ body {
   width: 100%;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 10px;
 }
 .left-container img {
-  width: 23vw;
+  width: 20vw;
   height: auto;
-  margin: 1px 1px;
   opacity: 0.7;
+  margin-right: 10px;
 }
 .left-container img:hover {
   opacity: 1;
@@ -30,6 +30,7 @@ body {
 .game-container {
   display: flex;
   flex-direction: row;
+  height: 100vh;
 }
 .center-container {
   display: flex;
@@ -84,11 +85,12 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: left;
+  height: auto;
 }
 .right-container img,
-.right-container .show-cards img {
+.right-container .show-cards {
   width: auto;
-  height: auto;
+  height: 35vh;
   cursor: pointer;
 }
 .right-container .no-play {

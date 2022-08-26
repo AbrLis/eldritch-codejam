@@ -1,20 +1,6 @@
 const greenPathCard = '../../assets/MythicCards/green/';
 const bluePathCard = '../../assets/MythicCards/blue/';
 const brownPathCard = '../../assets/MythicCards/brown/';
-// const difficulties = [
-//     {
-//         id: 'easy',
-//         name: 'Низкая'
-//     },
-//     {
-//         id: 'normal',
-//         name: 'Средняя'
-//     },
-//     {
-//         id: 'hard',
-//         name: 'Высокая'
-//     },
-// ];
 const ancientsData = [
     {
         id: 'azathoth',
@@ -633,8 +619,8 @@ function showCard() {
     if (card) {
         let elem = document.createElement('img');
         elem.src = card.cardFace;
-        elem.height = 400;
-        elem.width = 285;
+        // elem.height = 400;
+        // elem.width = 285;
         let place = document.querySelector('.show-cards');
         place.textContent = '';
         place.appendChild(elem);
